@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Covid-19 Global Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Covid-19 Global Tracker</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Search <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/countrycases">By Country</a></li>
+                        <li><a href="/countryhistory">By Date</a></li>
+                    </ul>
+                </li>                    
+            </ul>
+        </div>
+    </nav>
+    <div class="container2">
+        <div class="row">
+            <h2>GLOBAL STATUS</h2>
+            <div class="col-xs-6 col-md-6">
+                <table>
+                    <tr>
+                        <th class="statusF">World Estimates</th>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Cases Confirmed</td>
+                        <td> <%= total_confirmed %> </td>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Cases Recovered</td>
+                        <td> <%= total_recovered %> </td>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Death Count</td>
+                        <td> <%= total_deaths %> </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <table>
+                    <tr>
+                        <th class="statusF">Today's Latest Estimates</th>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Cases Confirmed</td>
+                        <td> <%= new_confirmed %> </td>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Cases Recovered</td>
+                        <td> <%= new_recovered %> </td>
+                    </tr>
+                    <tr class="rowFont">
+                        <td>Death Count</td>
+                        <td> <%= new_deaths %> </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr role="separator" aria-orientation="horizontal">
+    </div>
+    <div class="container2">
+        <h2>TOP COUNTRIES AFFECTED BY COVID-19 VIRUS</h2>
+        <div class="row">
+            <div class="container3">
+                <a href="https://covid19-country-watch.herokuapp.com/cases?country=US"><div class="col-xs-6 col-md-6">
+                    <img src="https://www.countryflags.io/us/shiny/64.png">
+                    <h1 class="topFont"><%= USData[0] %></h1>
+                    <p class="statusFont" style="text-align: left">Cases Confirmed: <%= USData[1] %> </p>
+                    <p class="statusFont" style="text-align: left">Cases Recovered: <%= USData[2] %> </p>
+                    <p class="statusFont" style="text-align: left">Death Count: <%= USData[3] %> </p>
+                </div></a>
+                <a href="https://covid19-country-watch.herokuapp.com/cases?country=India"><div class="col-xs-6 col-md-6">
+                    <img src="https://www.countryflags.io/in/shiny/64.png">
+                    <h1 class="topFont"><%= IndData[0] %></h1>
+                    <p class="statusFont" style="text-align: left">Cases Confirmed: <%= IndData[1] %> </p>
+                    <p class="statusFont" style="text-align: left">Cases Recovered: <%= IndData[2] %> </p>
+                    <p class="statusFont" style="text-align: left">Death Count: <%= IndData[3] %> </p>
+                </div></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container3">
+                <a href="https://covid19-country-watch.herokuapp.com/cases?country=Brazil"><div class="col-xs-6 col-md-6">
+                    <img src="https://www.countryflags.io/br/shiny/64.png">
+                    <h1 class="topFont"><%= BrazData[0] %></h1>
+                    <p class="statusFont" style="text-align: left">Cases Confirmed: <%= BrazData[1] %> </p>
+                    <p class="statusFont" style="text-align: left">Cases Recovered: <%= BrazData[2] %> </p>
+                    <p class="statusFont" style="text-align: left">Death Count: <%= BrazData[3] %> </p>
+                </div></a>
+                <a href="https://covid19-country-watch.herokuapp.com/cases?country=Russia"><div class="col-xs-6 col-md-6">
+                    <img src="https://www.countryflags.io/ru/shiny/64.png">
+                    <h1 class="topFont"><%= RussData[0] %></h1><h1>
+                    <p class="statusFont" style="text-align: left">Cases Confirmed: <%= RussData[1] %> </p>
+                    <p class="statusFont" style="text-align: left">Cases Recovered: <%= RussData[2] %> </p>
+                    <p class="statusFont" style="text-align: left">Death Count: <%= RussData[3] %> </p>
+                </div></a>
+            </div>
+        </div>
+        <hr role="separator" aria-orientation="horizontal">
+    </div>
+    <div class="container1">
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-12 col-md-12">
+                    <h2 style="text-align: left">Search any country's total number of Covid-19 cases</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-6 col-md-6">
+                    <form action="/cases" method="GET">
+                        <input type="text" name="country" placeholder="Search by country..." id="input">
+                        <span class="help-block">Name of country must be Uppercase</span>
+                        <button type="submit" class="fa fa-search">Search This Country</button>
+                    </form>
+                </div>
+                
+                <div class="col-xs-6 col-md-6">
+                    <em> <p><%= typeof no_data != 'undefined' ? no_data : '' %></p> </em>
+                    <em> <p><%= typeof total_cases != 'undefined' ? total_cases : '' %></p> </em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container1">
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-12 col-md-12">
+                    <h2 style="text-align: left">Choose a date and Search for any country's Covid-19 status</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-6 col-md-6">
+                    <form action="/history" method="GET">
+                        <input type="text" name="country" placeholder="Search by country..." class="countryI2" id="input">
+                        <span class="help-block">Name of country must be Uppercase</span>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <select name="status" class="countryI2" id="status">
+                        <option value="choose">Choose a status ...</option>
+                        <option value="Confirmed">Cases Confirmed</option>
+                        <option value="Recovered">Cases Recovered</option>
+                        <option value="Deaths">Total Deaths</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-6 col-md-6">
+                        <input type="date" id="thisdate" class="countryI2" name="thisdate" min="2020-01-22">
+                        <span class="help-block">Todays data will not be available until tomorrow</span>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <button type="submit" class="fa fa-search countryI2">Search This Country</button>
+                </div>
+            </div>
+        </div>
+        
+        </form>
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <em> <p><%= typeof no_history != 'undefined' ? no_history : '' %></p> </em>
+                <em> <p><%= typeof message != 'undefined' ? message : '' %></p> </em>
+            </div>
+        </div>
+        <hr role="separator" aria-orientation="horizontal">
+    </div>
+
+    <div class="container2 footer">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <p>For more information on Covid-19</p>
+                <p>Please visit the 
+                <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public">World Health Organization Website.</p></a>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <p>Developed by: <a href="https://github.com/harranzh">Harrison Arranz</a></p>
+                <p>The data was used from <a href="https://github.com/M-Media-Group/Covid-19-API">M-Media-Group public API</a></p>
+                <p> and also from <a href="https://api.covid19api.com/summary">Coronavirus COVID19 API</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

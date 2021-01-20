@@ -1,0 +1,20 @@
+{
+  "name": "covid-19-api",
+  "version": "1.0.0",
+  "description": "This is a Covid19 Api for users to fetch the most recent, up-to-date information about covid for all countries in the world",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Harrison Arranz",
+  "license": "ISC",
+  "dependencies": {
+    "a": "^2.1.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6",
+    "request": "^2.88.2"
+  }
+}

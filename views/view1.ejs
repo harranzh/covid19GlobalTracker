@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Covid-19 Global Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Covid-19 Global Tracker</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="">Search <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/countrycases">By Country</a></li>
+                        <li><a href="/countryhistory">By Date</a></li>
+                    </ul>
+                </li>                    
+            </ul>
+        </div>
+    </nav>
+    <div class="container1">
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-12 col-md-12">
+                    <h2>Search any country's total number of Covid-19 cases</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-12 col-md-12">
+                    <em> <p><%= typeof no_data != 'undefined' ? no_data : '' %></p> </em>
+                    <em> <p><%= typeof total_cases != 'undefined' ? total_cases : '' %></p> </em>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <div class="col-xs-6 col-md-6">
+                    <form action="/cases" method="GET">
+                        <input type="text" name="country" placeholder="Search any country..." class="countryI1" id="input">
+                        <span class="help-block">Name of country must be UPPERCASE</span>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <button type="submit" class="fa fa-search countryI1">Search This Country</button>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
